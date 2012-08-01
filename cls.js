@@ -25,18 +25,21 @@ function cls (superClass, f) {
     return ctor;
 }
 
-cls.include = function (context) {
-    var mixins = Array.prototype.slice.call(arguments, 1);
 
-    mixins.forEach(function (mixin) {
-        Object.getOwnPropertyNames(mixin).forEach(function (name) {
-            context[name] = mixin[name];
+function Base () {}
+Base.prototype.init = Base;
+
+Base.prototype.include = function () {
+    var objects = Array.prototype.slice.call(arguments),
+        self = this;
+
+    objects.forEach(function (o) {
+        Object.getOwnPropertyNames(o).forEach(function (name) {
+            self[name] = o[name];
         });
     });
 };
 
-function Base () {}
-Base.prototype.init = Base;
 
 global.cls = cls;
 
