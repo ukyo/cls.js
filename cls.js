@@ -40,6 +40,16 @@ Base.prototype.include = function () {
     });
 };
 
+Base.prototype.define = function(name, prop) {
+    typeof prop.g === 'function' && prop.get = prop.g;
+    typeof prop.s === 'function' && prop.set = prop.s;
+    typeof prop.v !== 'undefined' && prop.value = prop.v;
+    typeof prop.c !== 'undefined' && prop.configurable = prop.c;
+    typeof prop.e !== 'undefined' && prop.enumerable = prop.e;
+    typeof prop.w !== 'undefined' && prop.writable = prop.w;
+    Object.defineProperty(this, name, prop);
+};
+
 
 global.cls = cls;
 
