@@ -67,3 +67,37 @@ var C = cls(B, function () {
   this.include(FooMixin, BarMixin);
 });
 ```
+
+###alias of Object.defineProperty
+
+```javascript
+var D = cls(function () {
+  //data property
+  this.define('foo1', {
+    value: 1,
+    configurable: true,
+    enumerable: true,
+    writable: true
+  });
+  
+  //same mean
+  this.define('foo2', {
+    v: 1,
+    c: true,
+    e: true,
+    w: true
+  });
+  
+  //accessor property
+  this.define('bar1', {
+    get: function () {return this.value;},
+    set: function (value) {this.value = value;}
+  });
+  
+  //same mean
+  this.define('bar2', {
+    g: function () {return this.value;},
+    s: function (value) {this.value = value;}
+  });
+});
+```
